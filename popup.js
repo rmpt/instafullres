@@ -15,13 +15,41 @@ function addUrl(url){
     imgElement.setAttribute('class', 'img-thumb');
     iDiv.appendChild(imgElement);
     
-    var aElement = document.createElement('a');
-    aElement.setAttribute('href', url);
-    aElement.setAttribute('target', '_blank');
-    aElement.innerHTML = chrome.i18n.getMessage('open');
-    iDiv.appendChild(aElement);
+    var actionsDiv = document.createElement('div');
+    
+    var aImgElement = document.createElement('a');
+    aImgElement.setAttribute('href', url);
+    aImgElement.setAttribute('target', '_blank');
+    aImgElement.innerHTML = chrome.i18n.getMessage('open');
+    actionsDiv.appendChild(aImgElement);
+    
+    var separatorSpan = document.createElement('span');
+    separatorSpan.innerHTML = '&nbsp;';
+    actionsDiv.appendChild(separatorSpan);
+    
+    var aCopyElement = document.createElement('a');
+    aCopyElement.setAttribute('href', '#');
+    aCopyElement.innerHTML = chrome.i18n.getMessage('copy');
+    aCopyElement.addEventListener('click', function(event) {
+        event.preventDefault();
+        copyToClipboard(url);
+    });
+    actionsDiv.appendChild(aCopyElement);
+    
+    
+    iDiv.appendChild(actionsDiv);
     
     bodyElement.appendChild(iDiv);
+}
+
+function copyToClipboard(url) {
+    console.log(url);
+    var inputClipboardElement = document.createElement("input");
+    document.body.appendChild(inputClipboardElement);
+    inputClipboardElement.setAttribute('value', url);
+    inputClipboardElement.select();
+    document.execCommand("copy");
+    document.body.removeChild(inputClipboardElement);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -40,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 chrome.runtime.onMessage.addListener(function (msg, sender, response) {
-    console.log(msg);
     
     if (msg.from != 'contentscript') return;
     

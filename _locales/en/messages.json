@@ -1,5 +1,8 @@
 {
     "open": {
         "message": "Open"
+    },
+    "copy": {
+        "message": "Copy"
     }
 }

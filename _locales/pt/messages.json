@@ -1,5 +1,8 @@
 {
     "open": {
         "message": "Abrir"
+    },
+    "copy": {
+        "message": "Copiar"
     }
 }
