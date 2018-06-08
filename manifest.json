@@ -1,0 +1,22 @@
+{
+  "name": "InstaFullRes",
+  "description": "View Instagram pictures in full resolution",
+  "version": "1.0",
+  "default_locale": "en",
+  "permissions": [
+    "activeTab"
+  ],
+  "browser_action": {
+      "default_title": "Get this picture!",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+  },
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "run_at": "document_start",
+      "matches": ["*://*.instagram.com/*"],
+      "js": ["contentscript.js"]
+    }
+  ]
+}
