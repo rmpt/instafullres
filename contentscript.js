@@ -1,5 +1,4 @@
 
-var EVENT_CHROME_EXTENSION_REQUEST     = 'Ciberbit_ChromeExtensionRequest';
 var PARSED_CLASS = 'IFSP';
 var INSTA_THUMB_CLASS = 'v1Nh3 kIKUG  _bz0w';
 
